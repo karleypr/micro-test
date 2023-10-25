@@ -1,0 +1,8 @@
+{
+  "productId": 12345,
+  "brandId": 1,
+  "feeId": 1,
+  "startDate": "1/1/23 10:30",
+  "endDate": "31/12/23 23:59",
+  "price": 99.99
+}

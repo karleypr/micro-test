@@ -1,0 +1,6 @@
+.openapi-generator-ignore
+README.md
+pom.xml
+src/main/java/com/test/bcnc/adapters/input/rest/ApiUtil.java
+src/main/java/com/test/bcnc/adapters/input/rest/PriceApi.java
+src/main/java/com/test/bcnc/adapters/input/rest/dto/PriceDTO.java

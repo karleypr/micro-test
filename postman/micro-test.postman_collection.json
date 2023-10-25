@@ -1,0 +1,39 @@
+{
+	"info": {
+		"_postman_id": "749813b0-64b2-46d6-a258-26924ad0ada3",
+		"name": "microTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getPrice",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{protocol}}://{{url}}:{{port}}/price/12345?brandId=1&applicationDate=2023/01/19 00:00:00",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"price",
+						"12345"
+					],
+					"query": [
+						{
+							"key": "brandId",
+							"value": "1"
+						},
+						{
+							"key": "applicationDate",
+							"value": "2023/01/19 00:00:00"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
