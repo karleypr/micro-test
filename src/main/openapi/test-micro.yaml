@@ -1,0 +1,124 @@
+openapi: 3.0.3
+info:
+  title: priceApi
+  description: API Price test
+  contact:
+    email: karleyparedes86@hotmail.com
+  version: '0.1'
+servers:
+  - variables:
+      basePath:
+        default: v1
+    url: ''
+tags:
+  - name: price
+    description: Operations about price
+paths:
+  /price/{productId}:
+    get:
+      tags:
+        - price
+      summary: Get price by
+      description: ''
+      operationId: getPriceBy
+      parameters:
+        - name: productId
+          in: path
+          description: 'The name of the product identifier.'
+          required: true
+          schema:
+            type: integer
+            minLength: 5
+            maxLength: 5
+        - name: brandId
+          in: query
+          description: 'The name of the brand identifier.'
+          required: true
+          schema:
+            type: integer
+            minLength: 5
+            maxLength: 5
+        - name: applicationDate
+          in: query
+          description: 'Application date.'
+          required: true
+          schema:
+            type: string
+            format: 'yyyy/MM/dd HH:mm:ss'
+            example: '2020-06-14 00.00.00'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Price'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Price'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        '404':
+          description: Price not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+components:
+  schemas:
+    Price:
+      type: object
+      properties:
+        productId:
+          type: integer
+          format: int32
+          example: 35455
+        brandId:
+          type: integer
+          format: int32
+          example: 1
+        feeId:
+          type: integer
+          format: int32
+          example: 4
+        startDate:
+          type: string
+          format: 'yyyy/MM/dd HH:mm:ss'
+          example: '2020-06-15 16.00.00'
+        endDate:
+          type: string
+          format: 'yyyy/MM/dd HH:mm:ss'
+          example: '2020-12-31 23.59.59'
+        price:
+          type: number
+          format: double
+          example: 38.95
+    errorResponse:
+      additionalProperties: false
+      properties:
+        httpCode:
+          description: Http code status
+          type: integer
+          format: int32
+          example: 404
+        httpMessage:
+          description: Message of the error
+          type: string
+          example: Not found
+      required:
+          - httpCode
+          - httpMessage
+      description: Object that contents all the information error in a error response
+
+
+
