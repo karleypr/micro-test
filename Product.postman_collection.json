@@ -1,0 +1,73 @@
+{
+	"info": {
+		"_postman_id": "2fcbe29b-2ec2-4268-815a-71b866f0ad00",
+		"name": "Product",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35090557"
+	},
+	"item": [
+		{
+			"name": "priceByFilters",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/priceByFilters?priority=true&productId=12345&currency=EUR",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"priceByFilters"
+					],
+					"query": [
+						{
+							"key": "priority",
+							"value": "true"
+						},
+						{
+							"key": "productId",
+							"value": "12345"
+						},
+						{
+							"key": "currency",
+							"value": "EUR"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "price",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/price/12345?brandId=1&applicationDate=2023/01/19 00:00:00",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"price",
+						"12345"
+					],
+					"query": [
+						{
+							"key": "brandId",
+							"value": "1"
+						},
+						{
+							"key": "applicationDate",
+							"value": "2023/01/19 00:00:00"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

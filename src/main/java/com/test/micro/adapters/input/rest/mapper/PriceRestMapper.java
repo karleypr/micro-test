@@ -6,6 +6,8 @@ import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 
+import java.util.List;
+
 /**
  * Esta clase representa un mapper entre DTO y Modelo
  */
@@ -19,6 +21,14 @@ public interface PriceRestMapper {
      * @return PriceDTO el DTO con la respuesta del mapper
      */
     PriceDTO toPriceDtoFromPricesDomain(Price pricesDomain);
+
+    /**
+     * To Price Dto list From Prices Domain list
+     *
+     * @param pricesDomain El modelo
+     * @return List<PriceDTO> lista de el DTO con la respuesta del mapper
+     */
+    List<PriceDTO> toPriceDtoListFromPricesDomainList(List<Price> pricesDomain);
 
     /**
      * Mapper que se ejecuta después del mapper toPriceDtoFromPricesDomain

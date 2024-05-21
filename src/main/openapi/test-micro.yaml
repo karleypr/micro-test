@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: '3.0.3'
 info:
   title: priceApi
   description: API Price test
@@ -9,7 +9,7 @@ servers:
   - variables:
       basePath:
         default: v1
-    url: ''
+    url: 'http://localhost:8080/v1'
 tags:
   - name: price
     description: Operations about price
@@ -74,6 +74,69 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/errorResponse'
+
+  /priceByFilters:
+    get:
+      tags:
+        - price
+      summary: Get price by
+      description: ''
+      operationId: getpriceByFilters
+      parameters:
+        - name: priority
+          in: query
+          description: 'The priority of the product.'
+          required: false
+          schema:
+            type: boolean
+            minLength: 5
+            maxLength: 5
+        - name: productId
+          in: query
+          description: 'The price of the product.'
+          required: false
+          schema:
+            type: integer
+            minLength: 5
+            maxLength: 5
+        - name: currency
+          in: query
+          description: 'The currency.'
+          required: false
+          schema:
+            type: string
+            minLength: 5
+            maxLength: 5
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Price'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Price'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        '404':
+          description: Price not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
 components:
   schemas:
     Price:
@@ -116,8 +179,8 @@ components:
           type: string
           example: Not found
       required:
-          - httpCode
-          - httpMessage
+        - httpCode
+        - httpMessage
       description: Object that contents all the information error in a error response
 
 
