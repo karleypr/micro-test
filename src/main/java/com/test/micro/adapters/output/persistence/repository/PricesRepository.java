@@ -12,7 +12,7 @@ import java.util.List;
  * Interfaz PricesRepository que hereda de CrudRepository
  */
 @Repository
-public interface PricesRepository extends CrudRepository<PriceEntity, Long> {
+public interface PricesRepository extends CrudRepository<PriceEntity, Long>, PricesRepositoryCustom {
 
     /**
      * Este método contiene la consulta que ataca a la base de datos en memoria H2 para

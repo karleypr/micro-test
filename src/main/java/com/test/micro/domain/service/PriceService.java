@@ -1,5 +1,6 @@
 package com.test.micro.domain.service;
 
+import com.test.micro.domain.model.Fields;
 import com.test.micro.domain.model.Price;
 import com.test.micro.ports.input.GetPriceUseCase;
 import com.test.micro.ports.output.PricesPersistenceOutputPort;
@@ -41,6 +42,17 @@ public class PriceService implements GetPriceUseCase {
         }
 
         return priceList.stream().findFirst().orElseThrow();
+    }
+
+    /**
+     * Este método obtiene los detalles del precio de un producto mediante filtros
+     *
+     * @param fields filtros para realizar la consulta
+     * @return List<Price> Lista de el modelo con los detalles del precio
+     */
+    @Override
+    public List<Price> getpriceByFilters(Fields fields) {
+        return pricesPersistenceOutputPort.getpriceByFilters(fields);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.test.micro.ports.output;
 
+import com.test.micro.domain.model.Fields;
 import com.test.micro.domain.model.Price;
 
 import java.time.Instant;
@@ -21,5 +22,12 @@ public interface PricesPersistenceOutputPort {
      */
     List<Price> getPriceBy(Integer productId, Integer brandId, Instant applicationDate);
 
+    /**
+     * Este método obtiene los detalles del precio de un producto mediante filtros
+     *
+     * @param fields filtros para realizar la consulta
+     * @return List<Price> El listado del modelo con los detalles del precio
+     */
+    List<Price> getpriceByFilters(Fields fields);
 
 }
