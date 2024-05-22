@@ -10,6 +10,7 @@ import lombok.*;
 public class Fields {
     private Boolean priority;
     private Integer productId;
+    private String price;
     private String currency;
 
 }

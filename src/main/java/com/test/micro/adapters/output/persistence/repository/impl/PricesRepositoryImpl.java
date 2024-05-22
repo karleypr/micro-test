@@ -8,10 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -33,34 +30,72 @@ public class PricesRepositoryImpl implements PricesRepositoryCustom {
 
         CriteriaBuilder builder = em.getCriteriaBuilder();
 
-        CriteriaQuery<PriceEntity> cq = builder.createQuery(PriceEntity.class);
+        CriteriaQuery<Object[]> cq = builder.createQuery(Object[].class);
 
         Root<PriceEntity> root = cq.from(PriceEntity.class);
 
         List<Predicate> predicates = new ArrayList<>();
+        List<Selection> selections = new ArrayList<>();
 
         if (Objects.nonNull(fields.getPriority())){
+            selections.add(root.get(PriceEntity_.PRIORITY));
+
             predicates.add(
                     builder.equal(
                             root.get(PriceEntity_.PRIORITY), fields.getPriority()));
         }
 
         if (Objects.nonNull(fields.getProductId())){
+            selections.add(root.get(PriceEntity_.PRODUCT_ID));
+
             predicates.add(
                     builder.equal(
                             root.get(PriceEntity_.PRODUCT_ID), fields.getProductId()));
         }
 
         if (Objects.nonNull(fields.getCurrency())){
+            selections.add(root.get(PriceEntity_.CURRENCY));
+
             predicates.add(
                     builder.equal(
                             root.get(PriceEntity_.CURRENCY), fields.getCurrency()));
         }
 
+        if (Objects.nonNull(fields.getPrice())){
+            selections.add(root.get(fields.getPrice()));
+        }
+
+        cq.multiselect(selections.toArray(new Selection[0]));
+
         cq.where(predicates.toArray(new Predicate[0]));
 
-        TypedQuery<PriceEntity> query = em.createQuery(cq);
+        TypedQuery<Object[]> query = em.createQuery(cq);
 
-        return query.getResultList();
+        List<Object[]> results = query.getResultList();
+
+        List<PriceEntity> priceEntities = new ArrayList<>();
+        for (Object[] result : results) {
+            PriceEntity priceEntity = new PriceEntity();
+
+            int index = 0;
+
+            if (Objects.nonNull(fields.getPriority())) {
+                priceEntity.setPriority((Boolean) result[index++]);
+            }
+            if (Objects.nonNull(fields.getProductId())) {
+                priceEntity.setProductId((Integer) result[index++]);
+            }
+            if (Objects.nonNull(fields.getCurrency())) {
+                priceEntity.setCurrency((String) result[index++]);
+            }
+            if (Objects.nonNull(fields.getPrice())) {
+                priceEntity.setPrice((Double) result[index++]);
+            }
+
+            priceEntities.add(priceEntity);
+        }
+
+        return priceEntities;
     }
+
 }

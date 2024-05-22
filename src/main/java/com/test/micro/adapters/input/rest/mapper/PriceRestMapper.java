@@ -7,6 +7,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Esta clase representa un mapper entre DTO y Modelo
@@ -38,8 +39,12 @@ public interface PriceRestMapper {
      */
     @AfterMapping
     default void afterMappingToPriceDtoFromPricesDomain(Price pricesDomain, @MappingTarget PriceDTO priceDTO) {
-        priceDTO.setBrandId(pricesDomain.getBrand().getBrandId());
-        priceDTO.setFeeId(pricesDomain.getFee().getFeeId());
+        if (Objects.nonNull(pricesDomain.getBrand())){
+            priceDTO.setBrandId(pricesDomain.getBrand().getBrandId());
+        }
+        if (Objects.nonNull(pricesDomain.getFee())){
+            priceDTO.setFeeId(pricesDomain.getFee().getFeeId());
+        }
     }
 
 }
