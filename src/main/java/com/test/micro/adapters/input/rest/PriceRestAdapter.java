@@ -78,9 +78,10 @@ public class PriceRestAdapter implements PriceApi, PriceByFiltersApi {
      */
     @SneakyThrows
     @Override
-    public ResponseEntity<List<PriceDTO>> getpriceByFilters(Boolean priority, Integer productId, String currency){
+    public ResponseEntity<List<PriceDTO>> getpriceByFilters(Boolean priority, Integer productId, String price,
+                                                            String currency){
 
-        Fields fields = new Fields(priority, productId, currency);
+        Fields fields = new Fields(priority, productId, price, currency);
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body(priceRestMapper.toPriceDtoListFromPricesDomainList(getPriceUseCase.getpriceByFilters(fields)));

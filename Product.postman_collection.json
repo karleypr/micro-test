@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "2fcbe29b-2ec2-4268-815a-71b866f0ad00",
+		"_postman_id": "2b238453-2ac2-4001-b6b3-e07bfa3cead7",
 		"name": "Product",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "35090557"
+		"_exporter_id": "32682497"
 	},
 	"item": [
 		{
@@ -12,7 +12,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/priceByFilters?priority=true&productId=12345&currency=EUR",
+					"raw": "http://localhost:8080/priceByFilters?priority=true&productId=12345&currency=EUR&price=price",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -33,6 +33,10 @@
 						{
 							"key": "currency",
 							"value": "EUR"
+						},
+						{
+							"key": "price",
+							"value": "price"
 						}
 					]
 				}

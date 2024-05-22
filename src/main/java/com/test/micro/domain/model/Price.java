@@ -59,19 +59,4 @@ public class Price {
      */
     private Fee fee;
 
-    public Brand getBrand() {
-        return brand;
-    }
-
-    public Fee getFee() {
-        return fee;
-    }
-
-    public void setBrand(Brand brand) {
-        this.brand = brand;
-    }
-
-    public void setFee(Fee fee) {
-        this.fee = fee;
-    }
 }
